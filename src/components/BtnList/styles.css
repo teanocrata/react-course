@@ -1,0 +1,17 @@
+.btn-list {
+  list-style-type: none;
+  display: flex;
+}
+
+.btn-list-item.btn-list-item-active .btn-list-btn {
+  pointer-events: none;
+  background-color: lightslategray;
+
+}
+
+.btn-list-btn {
+  background-color: lightskyblue;
+  border: none;
+  cursor: pointer;
+  outline: none;
+}

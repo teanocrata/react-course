@@ -1,38 +1,25 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
+import {Switch, Route, BrowserRouter as Router} from 'react-router-dom';
+import Navigation from './components/Navigation'
+
 import './App.css';
 
-import UserMock from './mocks/users.json'
-
-import UserList from './components/User/UserList';
+import UsersPage from './components/pages/UsersPage'
+import ContactPage from './components/pages/ContactPage'
 
 class App extends Component {
-
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      users: [],
-      loading: false,
-    };
-  }
-
-  componentDidMount() {
-    this.setState({ loading: true });
-    setTimeout(
-      () => this.setState({ users: UserMock, loading: false }),
-      500
-    );
-  }
-
   render() {
     return (
-      <div>
-        {
-          this.state.loading ?
-          <span>loading</span> :
-          <UserList users={this.state.users} />
-        }
-      </div>
+      <Router>
+        <div>
+          <Navigation/>
+          <hr/>
+          <Switch>
+            <Route exact path="/" component={UsersPage}/>
+            <Route path="/contacts" component={ContactPage}/>
+          </Switch>
+        </div>
+      </Router>
     );
   }
 }

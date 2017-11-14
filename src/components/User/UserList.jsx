@@ -1,24 +1,25 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import User from './User';
 
-export default class UserList extends Component {
-  render() {
-    return (
-      <ul>
-        {
-          this.props.users.map((user) => <li key={user.id}><User {...user} /></li>)
-        }
-      </ul>
-    );
-  }
+const UserList = ({users, sortField}) => {
+  return (<ul>
+    {
+      users.sort((a, b) => (
+        a[sortField] < b[sortField]
+        ? -1
+        : 1)).map((user) => <li key={user.id}><User {...user}/></li>)
+    }
+  </ul>);
 }
 
+export default UserList;
+
 UserList.propTypes = {
-  users: PropTypes.array,
+users: PropTypes.array
 };
 
 UserList.defaultProps = {
-  users: [],
+users: []
 }
